@@ -14,7 +14,7 @@ import {
 import { FaGithub, FaTwitter } from "react-icons/fa";
 import Head from "next/head";
 
-const DynamicTerminal = dynamic(() => import("@/components/Terminal"), {
+const DynamicTerminal = dynamic(() => import("@/components/Terminal/index"), {
   ssr: false,
 });
 
