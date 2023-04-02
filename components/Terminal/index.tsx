@@ -18,14 +18,30 @@ const Terminal: FC = () => {
 
     terminalInstance.writeln("Hello, World!");
 
-    // Add command handling
+    let inputBuffer = "";
+
     terminalInstance.onData((data) => {
       const code = data.charCodeAt(0);
       if (code === 13) {
         // Enter key
         terminalInstance.write("\r\n");
+
+        // Check if inputBuffer contains "hello"
+        if (inputBuffer.trim() === "hello") {
+          terminalInstance.writeln(
+            "hello. thanks to visit my home. but, I'm under development. please wait a moment."
+          );
+        } else {
+          terminalInstance.writeln(
+            "please type 'hello'. I want to talk to you."
+          );
+        }
+
+        // Clear inputBuffer
+        inputBuffer = "";
       } else {
         terminalInstance.write(data);
+        inputBuffer += data;
       }
     });
 
@@ -34,7 +50,7 @@ const Terminal: FC = () => {
     };
   }, []);
 
-  return <div ref={terminalRef} style={{ width: "500px", height: "500px" }} />;
+  return <div ref={terminalRef} />;
 };
 
 export default Terminal;

@@ -24,7 +24,7 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
         <title>osaguild.xyz</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Box>
+      <Box m="32px">
         <Flex
           as="header"
           alignItems="flex-end"
@@ -32,6 +32,7 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
           padding="1rem"
           borderBottom="1px solid"
           borderColor="gray.200"
+          mb="32px"
         >
           <Image src="/osa.png" alt="osa" w="200px" />
           <Tabs w="100%" variant="unstyled" ml="30px">
