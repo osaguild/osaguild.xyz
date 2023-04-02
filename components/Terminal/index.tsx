@@ -16,7 +16,8 @@ const Terminal: FC = () => {
       fitAddon.fit();
     }
 
-    terminalInstance.writeln("Hello, World!");
+    terminalInstance.writeln("say hello");
+    terminalInstance.write("> ");
 
     let inputBuffer = "";
 
@@ -39,6 +40,13 @@ const Terminal: FC = () => {
 
         // Clear inputBuffer
         inputBuffer = "";
+        terminalInstance.write("> ");
+      } else if (code === 8 || code === 127) {
+        // Backspace key
+        if (inputBuffer.length > 0) {
+          terminalInstance.write("\b \b");
+          inputBuffer = inputBuffer.slice(0, -1);
+        }
       } else {
         terminalInstance.write(data);
         inputBuffer += data;
