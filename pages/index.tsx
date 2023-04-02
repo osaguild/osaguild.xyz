@@ -7,10 +7,9 @@ import {
   TabList,
   Tab,
   TabIndicator,
-  TabPanels,
-  TabPanel,
   HStack,
   Link,
+  Image,
 } from "@chakra-ui/react";
 import { FaGithub, FaTwitter } from "react-icons/fa";
 import Head from "next/head";
@@ -35,9 +34,7 @@ function Top() {
           borderBottom="1px solid"
           borderColor="gray.200"
         >
-          <Heading as="h1" size="lg" mb="10px">
-            osaguild.xyz
-          </Heading>
+          <Image src="/osa.png" alt="osa" w="200px" />
           <Tabs w="100%" variant="unstyled" ml="30px">
             <TabList justifyContent="flex-start">
               <Tab>about</Tab>
