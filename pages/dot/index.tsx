@@ -9,6 +9,7 @@ const DynamicTerminal = dynamic(() => import("@/components/Terminal/index"), {
 function Top() {
   return (
     <Layout>
+      <Heading>under development</Heading>
     </Layout>
   );
 }

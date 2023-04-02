@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FC, useState, useEffect } from "react";
 import Head from "next/head";
 import {
   Box,
@@ -12,12 +12,25 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { FaGithub, FaTwitter } from "react-icons/fa";
+import { useRouter } from "next/router";
+import { tabs } from "@/consts";
 
 interface LayoutProps {
   children?: React.ReactNode;
 }
 
-const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
+const Layout: FC<LayoutProps> = ({ children }) => {
+  const router = useRouter();
+  const [tabIndex, setTabIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    tabs.map((e, i) => {
+      if (e.path === router.pathname) {
+        setTabIndex(i);
+      }
+    });
+  }, [router.pathname]);
+
   return (
     <>
       <Head>
@@ -34,12 +47,16 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
           borderColor="gray.200"
           mb="32px"
         >
-          <Image src="/osa.png" alt="osa" w="200px" />
-          <Tabs w="100%" variant="unstyled" ml="30px">
+          <Link href="/">
+            <Image src="/osa.png" alt="osa" w="256px" />
+          </Link>
+          <Tabs index={tabIndex} w="100%" variant="unstyled" ml="64px">
             <TabList justifyContent="flex-start">
-              <Tab>about</Tab>
-              <Tab>products</Tab>
-              <Tab>contact</Tab>
+              {tabs.map((tab) => (
+                <Link href={tab.path} key={tab.label}>
+                  <Tab fontSize="2xl">{tab.label}</Tab>
+                </Link>
+              ))}
             </TabList>
             <TabIndicator
               mt="-1.5px"
