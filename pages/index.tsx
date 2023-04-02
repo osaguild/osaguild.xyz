@@ -12,7 +12,7 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { FaGithub, FaTwitter } from "react-icons/fa";
-import Head from "next/head";
+import Layout from "@/components/Layout";
 
 const DynamicTerminal = dynamic(() => import("@/components/Terminal/index"), {
   ssr: false,
@@ -21,10 +21,7 @@ const DynamicTerminal = dynamic(() => import("@/components/Terminal/index"), {
 function Top() {
   return (
     <>
-      <Head>
-        <title>osaguild.xyz</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
+      <Layout />
       <Box>
         <Flex
           as="header"
