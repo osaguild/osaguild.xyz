@@ -1,16 +1,12 @@
-import dynamic from "next/dynamic";
 import Layout from "@/components/Layout";
-import { Flex, Box, Heading, Text } from "@chakra-ui/react";
+import Gallery from "@/components/Gallery";
 
-const DynamicTerminal = dynamic(() => import("@/components/Terminal/index"), {
-  ssr: false,
-});
-
-function Top() {
+const Top = () => {
   return (
     <Layout>
+      <Gallery />
     </Layout>
   );
-}
+};
 
 export default Top;
