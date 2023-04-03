@@ -21,7 +21,7 @@ interface LayoutProps {
 
 const Layout: FC<LayoutProps> = ({ children }) => {
   const router = useRouter();
-  const [tabIndex, setTabIndex] = useState<number | null>(null);
+  const [tabIndex, setTabIndex] = useState<number>(-1);
 
   useEffect(() => {
     tabs.map((e, i) => {
