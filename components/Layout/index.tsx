@@ -48,7 +48,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
           mb="32px"
         >
           <Link href="/">
-            <Image src="/osa.png" alt="osa" w="256px" />
+            <Image src="/images/osa.png" alt="osa" w="256px" />
           </Link>
           <Tabs index={tabIndex} w="100%" variant="unstyled" ml="64px">
             <TabList justifyContent="flex-start">
