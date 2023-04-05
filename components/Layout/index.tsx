@@ -54,7 +54,9 @@ const Layout: FC<LayoutProps> = ({ children }) => {
             <TabList justifyContent="flex-start">
               {tabs.map((tab) => (
                 <Link href={tab.path} key={tab.label}>
-                  <Tab fontSize="2xl">{tab.label}</Tab>
+                  <Tab fontSize="2xl">
+                    <Image src={tab.image} alt={tab.label} w="64px" />
+                  </Tab>
                 </Link>
               ))}
             </TabList>
