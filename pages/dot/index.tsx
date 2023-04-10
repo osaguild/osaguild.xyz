@@ -11,7 +11,7 @@ function DotPage() {
         </Box>
         <Box width="40%">
           <Heading size="3xl" mb="16px">
-            Dot
+            dot
           </Heading>
           <Text fontSize="2xl">you can make dot art. data can be stored as 160 bit data. do you know what 160 bit means? it means an ethereum address.</Text>
         </Box>
