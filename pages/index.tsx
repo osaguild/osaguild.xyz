@@ -1,7 +1,7 @@
 import Layout from "@/components/Layout";
 import Gallery from "@/components/Gallery";
 
-const Top = () => {
+const HomePage = () => {
   return (
     <Layout>
       <Gallery />
@@ -9,4 +9,4 @@ const Top = () => {
   );
 };
 
-export default Top;
+export default HomePage;

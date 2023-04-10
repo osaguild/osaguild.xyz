@@ -2,7 +2,7 @@ import Layout from "@/components/Layout";
 import Dot from "@/components/Dot";
 import { Flex, Box, Heading, Text } from "@chakra-ui/react";
 
-function Top() {
+function DotPage() {
   return (
     <Layout>
       <Flex width="100%">
@@ -20,4 +20,4 @@ function Top() {
   );
 }
 
-export default Top;
+export default DotPage;

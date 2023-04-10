@@ -6,7 +6,7 @@ const DynamicTerminal = dynamic(() => import("@/components/Terminal/index"), {
   ssr: false,
 });
 
-function Top() {
+function HelloPage() {
   return (
     <Layout>
       <Flex width="100%">
@@ -22,4 +22,4 @@ function Top() {
   );
 }
 
-export default Top;
+export default HelloPage;
