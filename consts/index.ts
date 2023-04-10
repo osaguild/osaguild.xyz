@@ -9,6 +9,11 @@ const tabs = [
     image: "/tabs/dot.png",
     path: "/dot",
   },
+  {
+    label: "coffee",
+    image: "/tabs/coffee.png",
+    path: "/coffee",
+  },
 ];
 
 const pics = [
