@@ -2,7 +2,7 @@ import Layout from "@/components/Layout";
 import Dot from "@/components/Dot";
 import { Flex, Box, Heading, Text } from "@chakra-ui/react";
 
-function Top() {
+function DotPage() {
   return (
     <Layout>
       <Flex width="100%">
@@ -11,7 +11,7 @@ function Top() {
         </Box>
         <Box width="40%">
           <Heading size="3xl" mb="16px">
-            Dot
+            dot
           </Heading>
           <Text fontSize="2xl">you can make dot art. data can be stored as 160 bit data. do you know what 160 bit means? it means an ethereum address.</Text>
         </Box>
@@ -20,4 +20,4 @@ function Top() {
   );
 }
 
-export default Top;
+export default DotPage;
