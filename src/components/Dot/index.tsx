@@ -69,7 +69,7 @@ const Dot = () => {
     <Flex flexDirection="column" alignItems="center" justifyContent="center">
       <Box ref={ref} display="flex" flexWrap="wrap" width="100%">
         {grid.map((row, i) => (
-          <Box key={i} display="flex">
+          <Box key={`pixel_${i}`} display="flex">
             {row.map((cell, j) => (
               <Pixel
                 key={`${i}-${j}`}

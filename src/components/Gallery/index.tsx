@@ -7,7 +7,7 @@ const Gallery: FC = () => {
   return (
     <Box w="100px" h="100px">
       {pics.map((e, i) => (
-        <RandomImage key={i} path={e} />
+        <RandomImage key={`image_${i}`} path={e} />
       ))}
     </Box>
   );
