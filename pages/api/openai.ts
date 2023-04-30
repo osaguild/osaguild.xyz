@@ -21,8 +21,8 @@ export default async function handler(
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: req.body.message,
-      temperature: 1,
-      max_tokens: 1000,
+      temperature: 0,
+      max_tokens: 5,
     });
     res.status(200).json({ message: completion.data.choices[0].text!.trim() });
   } catch (e) {
