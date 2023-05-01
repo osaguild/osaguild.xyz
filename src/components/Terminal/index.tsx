@@ -1,10 +1,12 @@
-import { FC, useRef, useEffect } from "react";
+import { FC, useRef, useEffect, useState } from "react";
 import { Terminal as Xterm } from "xterm";
 import { FitAddon } from "xterm-addon-fit";
+import { v4 as uuidv4 } from "uuid";
 import "xterm/css/xterm.css";
 
 const Terminal: FC = () => {
   const terminalRef = useRef<HTMLDivElement>(null);
+  const [uuid, setUuid] = useState<string>(uuidv4());
 
   useEffect(() => {
     const terminalInstance = new Xterm();
@@ -44,7 +46,7 @@ const Terminal: FC = () => {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                name: "test",
+                name: uuid,
                 message: inputBuffer.trim(),
               }),
             })
