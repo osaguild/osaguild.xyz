@@ -43,7 +43,10 @@ const Terminal: FC = () => {
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify({ message: inputBuffer.trim() }),
+              body: JSON.stringify({
+                name: "test",
+                message: inputBuffer.trim(),
+              }),
             })
               .then((res) => {
                 if (res.status === 200) {
