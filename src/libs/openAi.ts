@@ -10,13 +10,12 @@ class OpenAIApi {
   private readonly MODEL = "gpt-3.5-turbo";
   private readonly TEMPERATURE = 0;
   private readonly MAX_TOKENS = 50;
-  private readonly SYSTEM_CONTENT = `
-    you can start chat if user text 'hello'.
-    you can't start conversation before user text 'hello' then you only answer 'please say hello'.
-    if user text 'hello' then you ask user's name'
-    if user doesn't text name then you ask user's name until user answers.
-    if user text name then you say 'hello {name}, my name is osaguild. I'm glad to meet you.' and you can start conversation.
-  `;
+  private readonly SYSTEM_CONTENT =
+    "you can start chat if user text 'hello'." +
+    "you can't start conversation before user text 'hello' then you only answer 'please say hello'." +
+    "if user text 'hello' then you ask user's name" +
+    "if user doesn't text name then you ask user's name until user answers." +
+    "if user text name then you say 'hello {name}, my name is osaguild. I'm glad to meet you.' and you can start conversation.";
 
   private api: OriginOpenAIApi;
   private messages: ChatCompletionRequestMessage[];
