@@ -11,6 +11,11 @@ const Terminal: FC = () => {
     const fitAddon = new FitAddon();
     terminalInstance.loadAddon(fitAddon);
 
+    const clear = () => {
+      inputBuffer = "";
+      terminalInstance.write("> ");
+    };
+
     if (terminalRef.current) {
       terminalInstance.open(terminalRef.current);
       fitAddon.fit();
@@ -22,48 +27,46 @@ const Terminal: FC = () => {
     let inputBuffer = "";
 
     terminalInstance.onData((data) => {
+      const message = inputBuffer.trim();
       const code = data.charCodeAt(0);
 
       // if enter key is pressed
       if (code === 13) {
         terminalInstance.write("\r\n");
 
-        // call api with inputBuffer
-        fetch("/api/openai", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ message: inputBuffer.trim() }),
-        })
-          .then((res) => {
-            if (res.status === 200) {
-              return res.json();
-            } else {
-              throw new Error(`failed to call api. http status: ${res.status}`);
-            }
-          })
-          // if success
-          .then((data) => {
-            // clear inputBuffer
-            inputBuffer = "";
+        try {
+          if (message === "") {
+            throw new Error("please type something.");
+          } else {
+            fetch("/api/openai", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ message: inputBuffer.trim() }),
+            })
+              .then((res) => {
+                if (res.status === 200) {
+                  return res.json();
+                } else {
+                  throw new Error(
+                    `failed to call api. http status: ${res.status}`
+                  );
+                }
+              })
+              .then((data) => {
+                terminalInstance.writeln(data.message);
+                clear();
+              })
+              .catch((err) => {
+                throw new Error("error occurred. please try again.");
+              });
+          }
+        } catch (e: any) {
+          terminalInstance.writeln(e.message);
+          clear();
+        }
 
-            // show response
-            terminalInstance.writeln(data.message);
-            terminalInstance.write("> ");
-          })
-          // if failed
-          .catch((err) => {
-            // print error
-            console.error(err);
-
-            // Clear inputBuffer
-            inputBuffer = "";
-
-            // show error message
-            terminalInstance.writeln("error occurred. please try again.");
-            terminalInstance.write("> ");
-          });
         // if backspace key is pressed
       } else if (code === 8 || code === 127) {
         if (inputBuffer.length > 0) {
