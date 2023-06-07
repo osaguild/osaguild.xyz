@@ -1,4 +1,4 @@
-import { FC, useRef, useEffect, useState } from "react";
+import { FC, useRef, useEffect } from "react";
 import { Terminal as Xterm } from "xterm";
 import { FitAddon } from "xterm-addon-fit";
 import { v4 as uuidv4 } from "uuid";
@@ -6,7 +6,8 @@ import "xterm/css/xterm.css";
 
 const Terminal: FC = () => {
   const terminalRef = useRef<HTMLDivElement>(null);
-  const [uuid, setUuid] = useState<string>(uuidv4());
+  const uuid = uuidv4();
+  const mode: Mode = "SEARCH";
 
   useEffect(() => {
     const terminalInstance = new Xterm();
@@ -40,15 +41,18 @@ const Terminal: FC = () => {
           if (message === "") {
             throw new Error("please type something.");
           } else {
-            fetch("/api/openai", {
+            const uri = mode === "GPT" ? "/api/openai" : "/api/bing";
+            const requestBody =
+              mode === "GPT"
+                ? { name: uuid, message: inputBuffer.trim() }
+                : { query: inputBuffer.trim() };
+
+            fetch(uri, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify({
-                name: uuid,
-                message: inputBuffer.trim(),
-              }),
+              body: JSON.stringify(requestBody),
             })
               .then((res) => {
                 if (res.status === 200) {

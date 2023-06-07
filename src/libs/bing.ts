@@ -1,16 +1,15 @@
-import { CognitiveServicesCredentials } from "@azure/ms-rest-azure-js";
-import { WebSearchClient } from "@azure/cognitiveservices-websearch";
-
 class BingApi {
   private static instance: BingApi;
 
-  private credentials: CognitiveServicesCredentials;
-  private webSearchClient: WebSearchClient;
-  private readonly PROPERTIES = ["webPages"]; 
+  private readonly URI = "https://api.bing.microsoft.com/v7.0/search";
+  private readonly COUNT = 1;
+  private readonly RESPONSE_FILTER = "Webpages";
+  private readonly SAFE_SEARCH = "Strict";
+
+  private apiKey: string;
 
   private constructor(apiKey: string) {
-    this.credentials = new CognitiveServicesCredentials(apiKey);
-    this.webSearchClient = new WebSearchClient(this.credentials);
+    this.apiKey = apiKey;
   }
 
   public static getInstance(): BingApi {
@@ -20,10 +19,18 @@ class BingApi {
     return BingApi.instance;
   }
 
-
-  public async search(message:string):Promise<void> {
-    const result = await this.webSearchClient.web.search(message);
-    console.log(result);
+  public async search(query: string): Promise<BingResponse> {
+    const response = await fetch(
+      `${this.URI}?count=${this.COUNT}&responseFilter=${this.RESPONSE_FILTER}&safeSearch=${this.SAFE_SEARCH}&q=${query}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Ocp-Apim-Subscription-Key": this.apiKey,
+        },
+      }
+    );
+    return (await response.json()) as BingResponse;
   }
 }
 
