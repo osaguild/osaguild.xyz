@@ -12,9 +12,11 @@
   "dependencies": {
     "@azure/cognitiveservices-websearch": "^3.0.1",
     "@azure/ms-rest-azure-js": "^2.1.0",
+    "@types/cheerio": "^0.22.31",
     "@types/node": "18.15.11",
     "@types/react": "18.0.31",
     "@types/react-dom": "18.0.11",
+    "cheerio": "^1.0.0-rc.12",
     "next": "13.2.4",
     "openai": "^3.2.1",
     "react": "18.2.0",
