@@ -12,14 +12,14 @@ type BingResponse = {
       id: string;
       name: string;
       url: string;
+      isFamilyFriendly: boolean;
       displayUrl: string;
       snippet: string;
-      deepLinks: {
-        name: string;
-        url: string;
-        snippet: string;
-      }[];
+      dateLastCrawled: string;
+      language: string;
+      isNavigational: boolean;
     }[];
+    someResultsRemoved: boolean;
   };
   relatedSearches: {
     id: string;
