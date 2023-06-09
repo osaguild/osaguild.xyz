@@ -6,7 +6,7 @@ const handler = async (
   res: NextApiResponse<{ message: string }>
 ) => {
   try {
-    const message = await OpenAIApi.getInstance().sendMessage(
+    const message = await OpenAIApi.getInstance("CHAT").sendMessage(
       req.body.name,
       req.body.message
     );

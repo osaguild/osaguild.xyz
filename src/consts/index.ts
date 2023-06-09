@@ -34,4 +34,15 @@ const pics = [
   "/images/z.png",
 ];
 
-export { tabs, pics };
+const supportedModes: { mode: Mode; uri: string }[] = [
+  {
+    mode: "CHAT",
+    uri: "api/chat",
+  },
+  {
+    mode: "SUMMARY",
+    uri: "api/summary",
+  },
+];
+
+export { tabs, pics, supportedModes };

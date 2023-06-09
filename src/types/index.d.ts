@@ -1,4 +1,4 @@
-type Mode = "GPT" | "SEARCH";
+type Mode = "CHAT" | "SUMMARY";
 
 type BingResponse = {
   _type: string;
