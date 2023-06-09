@@ -23,7 +23,7 @@ const Terminal: FC = () => {
     };
 
     // call api
-    const post = (message: string) => {
+    const post = () => {
       const requestBody =
         mode === "CHAT"
           ? { name: uuid, message: inputBuffer.trim() }
@@ -43,7 +43,12 @@ const Terminal: FC = () => {
           }
         })
         .then((data) => {
-          terminalInstance.writeln(data.message);
+          if (mode === "CHAT") {
+            terminalInstance.writeln(data.message);
+          } else {
+            terminalInstance.writeln(`url: ${data.url}`);
+            terminalInstance.writeln(`summary: ${data.summary}`);
+          }
           clear();
         })
         .catch((err) => {
@@ -82,7 +87,7 @@ const Terminal: FC = () => {
             );
             clear();
           } else if (mode) {
-            post(message);
+            post();
           } else {
             throw new Error(`please select mode. "chat" or "summary"`);
           }
