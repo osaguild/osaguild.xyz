@@ -20,17 +20,26 @@ class BingApi {
   }
 
   public async search(query: string): Promise<BingResponse> {
-    const response = await fetch(
-      `${this.URI}?count=${this.COUNT}&responseFilter=${this.RESPONSE_FILTER}&safeSearch=${this.SAFE_SEARCH}&q=${query}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Ocp-Apim-Subscription-Key": this.apiKey,
-        },
-      }
-    );
-    return (await response.json()) as BingResponse;
+    try {
+      console.log(`[bing]request query: ${query}`);
+      const response = await fetch(
+        `${this.URI}?count=${this.COUNT}&responseFilter=${this.RESPONSE_FILTER}&safeSearch=${this.SAFE_SEARCH}&q=${query}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Ocp-Apim-Subscription-Key": this.apiKey,
+          },
+        }
+      );
+
+      const body = await response.json();
+      console.log(`[bing]response data: ${JSON.stringify(body)}`);
+      return body as BingResponse;
+    } catch (e) {
+      console.error(`Error with Bing API request: ${e}`);
+      throw e;
+    }
   }
 }
 

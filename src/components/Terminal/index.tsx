@@ -52,7 +52,7 @@ const Terminal: FC = () => {
           clear();
         })
         .catch((err) => {
-          throw new Error("error occurred. please try again.");
+          throw new Error(`error occurred. please try again. ${err}`);
         });
     };
 

@@ -12,7 +12,10 @@ const handler = async (
     // search web site using bing
     const bingRes = await BingApi.getInstance().search(req.body.query);
     const url = bingRes.webPages.value[0].url;
-    const fetchRes = await fetch(url);
+    console.log(`[summary]url: ${url}`);
+
+    // scraping web site
+    const fetchRes = await fetch(url, { redirect: "follow" });
 
     // convert html text
     const html = await fetchRes.text();
@@ -24,6 +27,7 @@ const handler = async (
     $("meta").remove();
     const body = $("body").text().replace(/\s+/g, " ").trim();
     const escapedBody = _.escape(body);
+    console.log(`[summary]body: ${escapedBody}`);
 
     // summarize text using openai
     const summary = await OpenAIApi.getInstance("SUMMARY").sendMessage(
